@@ -38,7 +38,7 @@ class HandleData(threading.Thread):
                 if data[0] == '1':
                     print(1)
                     a = self.command_1(data)
-                    if a == 1:
+                    if a == 0:
                         break
                     # continue
                 if data[0] == '2':

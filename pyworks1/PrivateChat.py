@@ -166,7 +166,6 @@ class PrivateChatThread(threading.Thread):
 
     # The following function creates the file menu.
     def create_file_menu(self):
-        self.__file_menu.add_command(label='Clear Chat', command=self.clear_chat)
         self.__file_menu.add_command(label='Open', command=self.open_file)
         self.__file_menu.add_command(label='Save', command=self.save_chat)
         self.__file_menu.add_command(label="Print", command=self.to_printer)
@@ -199,12 +198,6 @@ class PrivateChatThread(threading.Thread):
                 self.__txt.yview(END)
                 self.__txt.config(state=DISABLED)
                 self.__current_socket.write((self.__client_name + '01' + data).encode())
-
-    # The following function clear the text widget.
-    def clear_chat(self):
-        self.__txt.config(state=NORMAL)
-        self.__txt.delete('1.0', END)
-        self.__txt.config(state=DISABLED)
 
     # The following function save the 'text' parameter to the database.
     def save_chat_db(self, text):

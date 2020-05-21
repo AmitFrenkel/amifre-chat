@@ -113,7 +113,10 @@ class Login:
 
 #  The following function checks that the is validated.
 def validate(char):
-    if char.isalpha() or char.isdigit():
-        return True
-    else:
+    try:
+        if char.isalpha() or char.isdigit() or ord(char) == 8:
+            return True
+        else:
+            return False
+    except:
         return False

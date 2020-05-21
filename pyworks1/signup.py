@@ -123,7 +123,10 @@ class Signup:
 
 # The following function validate the chars that it gets.
 def validate(char):
-    if char.isalpha() or char.isdigit() or ord(char) == 8:
-        return True
-    else:
+    try:
+        if char.isalpha() or char.isdigit() or ord(char) == 8:
+            return True
+        else:
+            return False
+    except:
         return False

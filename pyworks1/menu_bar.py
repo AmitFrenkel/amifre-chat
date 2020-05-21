@@ -85,7 +85,6 @@ class MenuBar:
         file = Menu(self.__menu_bar, tearoff=0)
         file.add_command(label="Open", command=self.openfile)
         file.add_command(label="Save", command=self.save_chat)
-        file.add_command(label="Clear Chat", command=self.clear_chat)
         file.add_command(label="Print", command=self.to_printer)
         file.add_separator()
         file.add_command(label="Exit", command=lambda: self.alt_f4())
@@ -108,12 +107,6 @@ class MenuBar:
             self.__my_cursor.execute("ALTER TABLE private_chats DROP COLUMN " + self.__client_name[1:])
             self.__my_database.commit()
             self.__root.destroy()
-
-    # The following function clear the chat.
-    def clear_chat(self):
-        self.__txt.config(state=NORMAL)
-        self.__txt.delete('1.0', END)
-        self.__txt.config(state=DISABLED)
 
     # The following function saves the chat to an external text/word file.
     def save_chat(self):

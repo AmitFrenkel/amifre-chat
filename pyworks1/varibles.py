@@ -1,7 +1,7 @@
 from datetime import datetime
 # The following file contains all the global variables that the project use.
 
-Host = '192.168.1.17'
+Host = '127.0.0.1'
 Port = 87
 COLORS = ['snow', 'ghost white', 'white smoke', 'gainsboro', 'floral white', 'old lace',
           'linen', 'antique white', 'papaya whip', 'blanched almond', 'bisque', 'peach puff',

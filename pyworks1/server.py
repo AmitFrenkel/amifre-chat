@@ -26,9 +26,9 @@ class Server:
     # The following function create connection between the database and the server.
     def database(self):
         my_database = mysql.connector.connect(
-            host='127.0.0.1',
+            host='192.168.1.17',
             user='root',
-            password='am1103',
+            password='root',
             database='dbchat'
         )
         my_cursor = my_database.cursor()
@@ -72,7 +72,8 @@ class Server:
             (client_socket, data) = message
             for client_socket1 in wlist:
                 if client_socket1 is not client_socket:
-                    client_socket1.write((str(data) + '\n').encode('utf-8'))
+                    print(data)
+                    client_socket1.write((str(data) + '\n').encode())
             self.__messages_to_send.remove(message)
 
     # The following function disconnects a client from the server.
