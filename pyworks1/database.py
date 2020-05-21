@@ -5,9 +5,9 @@ import mysql.connector
 class Database:
     def __init__(self):
         self.__my_database = mysql.connector.connect(
-            host='127.0.0.1',
+            host='192.168.1.17',
             user='root',
-            password='am1103',
+            password='root',
             database='dbchat'
         )
         self.__my_database.autocommit = True

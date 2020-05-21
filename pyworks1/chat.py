@@ -57,7 +57,7 @@ class Chat:
     # The following function creates a secured connection with the server.
     def create_connection(self, host, port):
         client_socket = socket.create_connection((host, port))
-        client_socket = self.__context.wrap_socket(client_socket, server_hostname='127.0.0.1')
+        client_socket = self.__context.wrap_socket(client_socket, server_hostname='192.168.1.17')
         return client_socket
 
     # The following function destroy the window.
