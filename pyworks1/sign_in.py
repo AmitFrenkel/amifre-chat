@@ -99,13 +99,13 @@ class Login:
                 self.__my_database.commit()
                 name_len = len(self.__client_name)
                 self.__client_name = str(name_len) + self.__client_name
-            try:
-                Chat(Host, Port, self.__client_name, self.__window, self.__start)
-            except:
-                Notification('The server is currently unavailable').start()
-                sql = "UPDATE users SET connected='False' WHERE name=%s "
-                self.__my_cursor.execute(sql, (self.__client_name[1:],))
-                self.__my_database.commit()
+            # try:
+            Chat(self.__client_name, self.__window, self.__start)
+            # except:
+            #     Notification('The server is currently unavailable').start()
+            #     sql = "UPDATE users SET connected='False' WHERE name=%s "
+            #     self.__my_cursor.execute(sql, (self.__client_name[1:],))
+            #     self.__my_database.commit()
 
     # The following function destroy the window.
     def alt_f4(self):

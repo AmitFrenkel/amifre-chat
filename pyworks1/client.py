@@ -9,6 +9,7 @@ import socket
 # The main function of the project.
 def main(ip):
     varibles.logout = False
+    print(ip)
     d = Database(ip)
     varibles.Host = str(ip)
     HomeWindow(d.get_my_database(), d.get_my_cursor())

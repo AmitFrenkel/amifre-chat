@@ -16,20 +16,21 @@ import emoji
 from custom_text import CustomText
 import random
 from varibles import *
+import varibles
 
 
 # The following class creates the main chat of the app.
 class Chat:
-    def __init__(self, host, port, client_name, window, start):
+    def __init__(self, client_name, window, start):
         self.__profile_list = {}
         self.__private_chat_list = []
-        self.__d = Database()
+        self.__d = Database(varibles.Host)
         self.__color = {}
         self.__my_database = self.__d.get_my_database()
         self.__my_cursor = self.__d.get_my_cursor()
         self.__client_name = client_name
         self.__context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-        self.__client_socket = self.create_connection(host, port)
+        self.__client_socket = self.create_connection(varibles.Host, varibles.Port)
         window.destroy()
         start.destroy()
         self.__message_tag = ''

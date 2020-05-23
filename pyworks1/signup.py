@@ -110,7 +110,7 @@ class Signup:
             self.__my_database.commit()
             self.__client_name = str(len(self.__client_name)) + self.__client_name
             try:
-                Chat(Host, Port, self.__client_name, self.__window, self.__start)
+                Chat(self.__client_name, self.__window, self.__start)
             except:
                 Notification('The server is currently unavailable').start()
                 sql = "UPDATE users SET connected='False' WHERE name=%s "
