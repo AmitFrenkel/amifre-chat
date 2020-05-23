@@ -87,9 +87,12 @@ class PrivateChatThread(threading.Thread):
                     message_tag = 'The message date is ' + m[0] + ' ' + m[1]
                     message = ' '.join(m[1:])
                     message = emoji.emojize(message)
-                    txt.insert(END, message + '\n', (message_tag,))
-                    txt.tag_bind(message_tag, "<Enter>", lambda event, date=message_tag: self.show_info(date))
-                    txt.tag_bind(message_tag, "<Leave>", lambda event, date=message_tag: self.show_info(""))
+                    try:
+                        txt.insert(END, message + '\n', (message_tag,))
+                        txt.tag_bind(message_tag, "<Enter>", lambda event, date=message_tag: self.show_info(date))
+                        txt.tag_bind(message_tag, "<Leave>", lambda event, date=message_tag: self.show_info(""))
+                    except:
+                        txt.insert(END, "Your device doesn't support this type of message" + '\n')
             txt.yview(END)
             txt.config(state=DISABLED)
         entry = Entry(label, width=200, relief='solid', bd=1, bg=self.get_color('input_background_color'),
@@ -108,11 +111,14 @@ class PrivateChatThread(threading.Thread):
             if len(sdata) > 2 or self.__txt.compare("end-1c", "!=", "1.0"):
                 self.__txt.config(state=NORMAL)
                 message_tag = 'The message date is ' + DATE + ' ' + str(time.strftime("%H:%M"))
-                self.__txt.insert(END, data + '\n', (message_tag,))
-                self.__txt.tag_bind(message_tag, "<Enter>", lambda event, date=DATE: self.show_info(message_tag))
-                self.__txt.tag_bind(message_tag, "<Leave>", lambda event, date=DATE: self.show_info(""))
-                self.__txt.yview(END)
-                self.__txt.config(state=DISABLED)
+                try:
+                    self.__txt.insert(END, data + '\n', (message_tag,))
+                    self.__txt.tag_bind(message_tag, "<Enter>", lambda event, date=DATE: self.show_info(message_tag))
+                    self.__txt.tag_bind(message_tag, "<Leave>", lambda event, date=DATE: self.show_info(""))
+                except:
+                    self.__txt.insert(END, "Your device doesn't support this type of message" + '\n')
+                    self.__txt.yview(END)
+                    self.__txt.config(state=DISABLED)
             else:
                 self.__txt.config(state=NORMAL)
                 message_tag = 'The message date is ' + DATE + ' ' + str(time.strftime("%H:%M"))
@@ -194,7 +200,10 @@ class PrivateChatThread(threading.Thread):
             with open(filename, encoding='utf-8', mode='r') as file:
                 data = file.read()
                 self.__txt.config(state=NORMAL)
-                self.__txt.insert(END, data + '\n')
+                try:
+                    self.__txt.insert(END, data + '\n')
+                except:
+                    self.__txt.insert(END, "Your device doesn't support this type of message" + '\n')
                 self.__txt.yview(END)
                 self.__txt.config(state=DISABLED)
                 self.__current_socket.write((self.__client_name + '01' + data).encode())

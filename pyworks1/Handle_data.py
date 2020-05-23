@@ -154,10 +154,13 @@ class HandleData(threading.Thread):
                 self.__color[sender_name] = random.choice(COLORS)
             self.__txt.highlight_pattern(sen_name, self.__color[sender_name])
             message_tag = 'The message date is ' + DATE + ' ' + str(time.strftime("%H:%M"))
-            self.__txt.insert(END, data + '\n', (message_tag,))
-            self.__txt.tag_bind(message_tag, "<Enter>", lambda event, date=DATE: self.show_info(message_tag))
-            self.__txt.tag_bind(message_tag, "<Leave>", lambda event, date=DATE: self.show_info(""))
-            self.__txt.highlight_pattern(sen_name, self.__color[sender_name])
+            try:
+                self.__txt.insert(END, data + '\n', (message_tag,))
+                self.__txt.tag_bind(message_tag, "<Enter>", lambda event, date=DATE: self.show_info(message_tag))
+                self.__txt.tag_bind(message_tag, "<Leave>", lambda event, date=DATE: self.show_info(""))
+                self.__txt.highlight_pattern(sen_name, self.__color[sender_name])
+            except:
+                self.__txt.insert(END, "Your device doesn't support this type of message" + '\n')
             self.__txt.yview(END)
             self.__txt.config(state=DISABLED)
 

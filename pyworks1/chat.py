@@ -119,18 +119,24 @@ class Chat:
                         self.__color[lmessage[:-1]] = random.choice(COLORS)
                     self.__txt.tag_configure(self.__color[lmessage[:-1]], foreground=self.__color[lmessage[:-1]])
                     self.__txt.highlight_pattern(lmessage, self.__color[lmessage[:-1]])
-                    self.__txt.insert(END, message + '\n', (self.__message_tag,))
-                    self.__txt.tag_bind(self.__message_tag, "<Enter>",
-                                        lambda event, date=self.__message_tag: self.show_info(date))
-                    self.__txt.tag_bind(self.__message_tag, "<Leave>",
-                                        lambda event, date=self.__message_tag: self.show_info(""))
-                    self.__txt.highlight_pattern(lmessage, self.__color[lmessage[:-1]])
+                    try:
+                        self.__txt.insert(END, message + '\n', (self.__message_tag,))
+                        self.__txt.tag_bind(self.__message_tag, "<Enter>",
+                                            lambda event, date=self.__message_tag: self.show_info(date))
+                        self.__txt.tag_bind(self.__message_tag, "<Leave>",
+                                            lambda event, date=self.__message_tag: self.show_info(""))
+                        self.__txt.highlight_pattern(lmessage, self.__color[lmessage[:-1]])
+                    except:
+                        self.__txt.insert(END, "Your device doesn't support this type of message" + '\n')
                 else:
-                    self.__txt.insert(END, emoji.emojize(message) + '\n', (self.__message_tag,))
-                    self.__txt.tag_bind(self.__message_tag, "<Enter>",
-                                        lambda event, date=self.__message_tag: self.show_info(date))
-                    self.__txt.tag_bind(self.__message_tag, "<Leave>",
-                                        lambda event, date=self.__message_tag: self.show_info(""))
+                    try:
+                        self.__txt.insert(END, message + '\n', (self.__message_tag,))
+                        self.__txt.tag_bind(self.__message_tag, "<Enter>",
+                                            lambda event, date=self.__message_tag: self.show_info(date))
+                        self.__txt.tag_bind(self.__message_tag, "<Leave>",
+                                            lambda event, date=self.__message_tag: self.show_info(""))
+                    except:
+                        self.__txt.insert(END, "Your device doesn't support this type of message" + '\n')
             except:
                 pass
 

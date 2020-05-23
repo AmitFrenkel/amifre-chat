@@ -124,7 +124,10 @@ class MenuBar:
             with open(filename, encoding='utf-8', mode='r') as file:
                 data = file.read()
                 self.__txt.config(state=NORMAL)
-                self.__txt.insert(END, data + '\n')
+                try:
+                    self.__txt.insert(END, data + '\n')
+                except:
+                    self.__txt.insert(END, "Your device doesn't support this type of message" + '\n')
                 self.__txt.yview(END)
                 self.__txt.config(state=DISABLED)
                 self.__client_socket.write((self.__client_name+'01'+data).encode())
