@@ -11,12 +11,13 @@ import varibles
 
 # The following class creates the menu bar of the main chat.
 class MenuBar:
-    def __init__(self, root, client_name, client_socket, my_cursor, my_database, txt, e1, mem_list):
+    def __init__(self, root, client_name, client_socket, my_cursor, my_database, txt, e1, mem_list, handle_data):
         self.__root = root
         self.__my_cursor = my_cursor
         self.__my_database = my_database
         self.__client_name = client_name
         self.__client_socket = client_socket
+        self.__handle_data = handle_data
         self.__txt = txt
         self.__e1 = e1
         self.__mem_list = mem_list
@@ -123,6 +124,9 @@ class MenuBar:
         if filename is not None and filename != '':
             with open(filename, encoding='utf-8', mode='r') as file:
                 data = file.read()
+                if self.__handle_data.get_mute() == 'True':
+                    Notification('You can not speak here').start()
+                    return
                 self.__txt.config(state=NORMAL)
                 try:
                     self.__txt.insert(END, data + '\n')

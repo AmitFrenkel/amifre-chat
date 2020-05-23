@@ -93,7 +93,7 @@ class Chat:
         self.__root.bind('<Control-p>', lambda x: self.to_printer())
         self.__root.bind('<Control-P>', lambda x: self.to_printer())
         MenuBar(self.__root, self.__client_name, self.__client_socket, self.__my_cursor, self.__my_database,
-                self.__txt, self.__entry, self.__mem_list)
+                self.__txt, self.__entry, self.__mem_list, self.__handle_data)
         self.__handle_data.start()
         self.__root.minsize(width=round(self.__root.winfo_screenwidth() / 1.85),
                             height=round(self.__root.winfo_screenheight() / 1.75))
