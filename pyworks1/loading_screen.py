@@ -30,7 +30,7 @@ class LoadingScreen:
     def create_logo(self):
         image_file = Image.open('icon.ico').resize((200, 200))
         img = ImageTk.PhotoImage(image_file)
-        image_label = Label(self.__window, width=200, height=200, bg='black', image=img)
+        image_label = Label(self.__window, bg='black', image=img)
         image_label.pack()
         image_label.image = img
 
@@ -44,7 +44,8 @@ class LoadingScreen:
 # The following function changes the progress bar and the status of the loading
     def create_loading_bar(self):
         # 20% progress
-        self.__loading_bar = Progressbar(self.__window, orient=HORIZONTAL, length=150, mode='determinate')
+        self.__loading_bar = Progressbar(self.__window, orient=HORIZONTAL,
+                                         length=round(self.__window.winfo_screenwidth()/12.8), mode='determinate')
         self.__loading_bar.pack()
         self.__loading_bar['value'] = 20
         self.__window.update_idletasks()
