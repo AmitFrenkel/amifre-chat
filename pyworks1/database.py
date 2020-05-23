@@ -3,9 +3,9 @@ import mysql.connector
 
 # The following class creates connection between the user and the database.
 class Database:
-    def __init__(self):
+    def __init__(self, ip):
         self.__my_database = mysql.connector.connect(
-            host='192.168.1.17',
+            host=ip,
             user='root',
             password='root',
             database='dbchat'

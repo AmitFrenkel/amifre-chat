@@ -1,9 +1,22 @@
+import threading
 import socket
 import select
 import time
 import ssl
 from varibles import *
 import mysql.connector
+
+
+class Welcome(threading.Thread):
+    def __init__(self):
+        super(Welcome, self).__init__()
+        self.__server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+        self.__server.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+
+    def run(self):
+        while True:
+            self.__server.sendto('1'.encode(), ('<broadcast>', 37020))
+            time.sleep(1)
 
 
 # The following class creates a server for chat app that bind to the 'HOST' and 'PORT' parameters.
@@ -327,4 +340,7 @@ class Server:
 
 
 if __name__ == '__main__':
+    Welcome().start()
     Server()
+
+
