@@ -13,7 +13,7 @@ class Database:
         self.__my_database.autocommit = True
         self.__my_cursor = self.__my_database.cursor()
 
-    # This are the accessors of the class:
+    # These are the accessors of the class:
     def get_my_database(self):
         return self.__my_database
 

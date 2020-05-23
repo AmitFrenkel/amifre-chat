@@ -18,6 +18,9 @@ class Welcome(threading.Thread):
             self.__server.sendto('1'.encode(), ('<broadcast>', 37020))
             time.sleep(1)
 
+    def get_server(self):
+        return self.__server
+
 
 # The following class creates a server for chat app that bind to the 'HOST' and 'PORT' parameters.
 # This server supports multiple connections.
@@ -340,7 +343,7 @@ class Server:
 
 
 if __name__ == '__main__':
-    Welcome().start()
+    w = Welcome()
+    w.start()
     Server()
-
-
+    w.get_server().close()

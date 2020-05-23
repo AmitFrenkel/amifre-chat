@@ -4,7 +4,9 @@ from loading_screen import LoadingScreen
 import ctypes
 import varibles
 import socket
-
+import select
+import time
+import tkinter.messagebox
 
 # The main function of the project.
 def main(ip):
@@ -25,6 +27,17 @@ if __name__ == '__main__':
     client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
     client.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
     client.bind(("", 37020))
-    data, addr = client.recvfrom(1024)
+    timer = 0
+    addr = ''
+    while timer < 10:
+        timer += 1
+        time.sleep(1)
+        print(timer)
+        r, w, x = select.select([client], [], [], 0.00001)
+        if client in r:
+            data, addr = client.recvfrom(1024)
+            main(addr[0])
+            break
     client.close()
-    main(addr[0])
+    if timer == 10:
+        tkinter.messagebox.showinfo('Error', 'The server is currently offline')
