@@ -12,6 +12,7 @@ class Welcome(threading.Thread):
         super(Welcome, self).__init__()
         self.__server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
         self.__server.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+        self.daemon = True
 
     def run(self):
         while True:
@@ -81,6 +82,7 @@ class Server:
                     else:
                         self.__messages_to_send.append((current_socket, self.handle_data(data, current_socket)))
             self.send_waiting_messages(wlist)
+        self.__server_socket.close()
 
     # The following function sends the messages from the clients.
     def send_waiting_messages(self, wlist):
