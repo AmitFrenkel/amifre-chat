@@ -36,7 +36,7 @@ class Login:
         member_password.place(relx=0.04, rely=0.21)
         password = Entry(self.__window, bg='green', fg='orange', show='*',
                          font=('Segoe UI', 12), insertbackground='orange', validate='key', validatecommand=vcmd)
-        password.place(relx=0.27, rely=0.21, relwidth=0.5375)
+        password.place(relx=0.3, rely=0.21, relwidth=0.5375)
         show_password = Button(self.__window, text='Show Password', bg='green', bd=7, fg='#fbf168',
                                relief=GROOVE, font=('Segoe UI', 8), cursor='hand2',
                                command=lambda: self.show_password())
@@ -49,7 +49,7 @@ class Login:
         l1.place(relx=0.04, rely=0.153)
         member_name = Entry(self.__window, bg='green', fg='orange',
                             font=('Segoe UI', 12), insertbackground='orange', validate='key', validatecommand=vcmd)
-        member_name.place(relx=0.27, rely=0.15, relwidth=0.5375)
+        member_name.place(relx=0.3, rely=0.15, relwidth=0.5375)
         return member_name
 
     # The following function creates the tkinter window itself.
