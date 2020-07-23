@@ -3,8 +3,8 @@ from tkinter import simpledialog
 
 # The following class inherit from the simpledialog widget of tkinter and creates the window with the app's icon.
 class StringDialog(simpledialog._QueryString):
-    def body(self, master):
-        super().body(master)
+    def body(self, main):
+        super().body(main)
         self.iconbitmap('icon.ico')
 
 
